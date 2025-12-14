@@ -45,3 +45,45 @@ IO.puts seconds_in_days.(2)
 
 average_age = fn (m1, m2) -> (m1.age + m2.age) / 2 end
 IO.puts average_age.(%{age: 1}, %{age: 2})
+
+# pattern matching
+[a, b, c | other] = [1, 2, 3, 4, 5]
+
+person = %{name: "Michael", age: 64}
+%{name: name, age: age} = person
+IO.puts name
+IO.puts age
+
+# pattern match on argument passed
+road = fn
+  "high" ->  "You take the high road."
+  "low" -> "I'll take the low road."
+  _ -> "Take either the high road or the low road."
+end
+IO.puts road.("high")
+IO.puts road.("low")
+IO.puts road.("middle")
+
+greeting = fn
+  %{name: name} -> "Hello, #{name}!"
+  %{} -> "Hello, stranger!"
+end
+IO.puts greeting.(%{name: "Izzy"})
+IO.puts greeting.(%{})
+# matches on subset of map
+# RHS can contain more keys than LHS
+# LHS keys are those that must be there
+# The right-hand-side must contain the same keys as the left-hand-side,
+# but the right-hand-side can contain more keys than what's on the left.
+IO.puts greeting.(%{age: "30ish"})
+
+greeting = fn
+  %{name: name} -> "Hello, #{name}!"
+  %{name: name, age: age} -> "Hello, #{name}, you are #{age}!"
+  _ -> "Provide your name and/or age."
+end
+IO.puts greeting.(%{name: "Michael"})
+IO.puts greeting.(%{name: "Michael", age: 16})
+IO.puts greeting.(%{})
+IO.puts greeting.(%{age: 11, name: "Abe"})
+# IO.puts greeting.()
