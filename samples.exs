@@ -10,7 +10,6 @@ name = "Michael"
 IO.puts "My name is #{name}"
 
 list = ["I", "am", "a", "list"]
-# IO.puts list[0]
 
 person = %{"name" => "Robert", "age" => 56, "gender" => "Male"}
 IO.puts person["name"]
@@ -87,3 +86,22 @@ IO.puts greeting.(%{name: "Michael", age: 16})
 IO.puts greeting.(%{})
 IO.puts greeting.(%{age: 11, name: "Abe"})
 # IO.puts greeting.()
+
+IO.puts String.reverse("reverse this")
+a_list = String.split("split my string into pieces")
+IO.puts(a_list)
+s = "moo"
+IO.puts String.replace(s, "o", "e")
+IO.puts s
+IO.puts String.replace("the cow jumped over the moon", "oo", "ee")
+IO.puts String.upcase("not so quiet any more")
+IO.puts String.downcase("LOUD TO QUIET")
+
+name = IO.gets("What's your name? ")
+IO.puts(name)
+name = String.trim(name)
+IO.puts name
+
+name = IO.gets "What is your name? "
+age = IO.gets "And what is your age? "
+IO.puts "Hello, #{String.trim(name)}! You're #{String.trim(age)}."
