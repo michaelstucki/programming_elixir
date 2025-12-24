@@ -1,0 +1,4 @@
+$ iex -S mix
+alias People.Person (can now use Person)
+izzy |> Person.toggle_location
+$ mix format
