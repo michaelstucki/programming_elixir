@@ -1,8 +1,25 @@
-defmodule PeopleTest do
+defmodule People.PeopleTest do
   use ExUnit.Case
-  doctest People
+  alias People.Person
+  doctest People.Person
 
-  test "greets the world" do
-    assert People.hello() == :world
+  test "full_name/1" do
+    person = %Person{
+      first_name: "Ryan",
+      last_name: "Bigg"
+    }
+    assert person |> Person.full_name === "Ryan Bigg"
+  end
+
+  test "full_name/1 with mononyms" do
+    teller = %Person{
+      first_name: "Teller"
+    }
+    assert teller |> Person.full_name === "Teller"
+
+    madonna = %Person{
+      first_name: "Madonna"
+    }
+    assert madonna |> Person.full_name === "Madonna"
   end
 end

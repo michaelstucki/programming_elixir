@@ -4,8 +4,33 @@ defmodule People.Person do
             birthday: nil,
             location: "home"
 
-  def full_name(%__MODULE__{} = person) do
-    "#{person.first_name} #{person.last_name}"
+  @doc """
+  Joins a person's first name and last name.
+  If a person has only one name, only that name is returned.
+
+  ## Examples
+
+  iex > ryan = %Person{first_name: "Ryan", last_name: "Bigg}
+  iex > ryan |> Person.full_name
+  "Ryan Bigg"
+
+  iex > madonna = %Person{first_name: "Madonna"}
+  iex > madonna |> Person.full_name
+  "Madonna"
+  """
+  # has to be first
+  def full_name(%__MODULE__{
+    first_name: first_name,
+    last_name: nil
+  }) do
+    "#{first_name}"
+  end
+
+  def full_name(%__MODULE__{
+    first_name: first_name,
+    last_name: last_name
+  }) do
+    "#{first_name} #{last_name}"
   end
 
   def age(%__MODULE__{} = person) do
